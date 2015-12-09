@@ -38,6 +38,8 @@
 
 /*jslint bitwise: true */
 /*global unescape, define */
+var fs = require("fs"),
+    input = fs.readFileSync("./inputs/advent_04.txt", "utf8");
 
 ;(function ($) {
     'use strict';
@@ -320,4 +322,4 @@
     console.log("Match 5:", answer1);
     console.log("Match 6:", answer2);
 
-})("iwrupvqb", this.md5);
+})(input, this.md5);
