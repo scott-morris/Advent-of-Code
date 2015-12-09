@@ -1,0 +1,22 @@
+{
+  "name": "advent_of_code_2015",
+  "version": "1.0.0",
+  "description": "Advent of Code 2015",
+  "main": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/scott-morris/Advent-of-Code.git"
+  },
+  "author": "Scott Morris",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/scott-morris/Advent-of-Code/issues"
+  },
+  "homepage": "https://github.com/scott-morris/Advent-of-Code",
+  "dependencies": {
+    "fs": "0.0.2"
+  }
+}
