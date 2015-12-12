@@ -7,14 +7,22 @@
 	PART TWO:
 	Describe answer #2
 */
-var fs = require("fs"),
-	assert = require("assert"),
-	input = fs.readFileSync("./inputs/advent_##.txt", "utf8"); //.split("\n"); // if multi-line to change to array
+;(function (advent) {
+	var input = advent.getInputArray(12),
+		assert = require("assert");
 
-;(function (input) {
-	var answer1,
-		answer2;
+	function answer1 (str) {
 
-	console.log("Answer #1:", answer1);
-	console.log("Answer #2:", answer2);
-})(input);
+	}
+
+	function answer2 (str) {
+
+	}
+
+	// Run tests to confirm requirements have been met
+	(function runTests () {
+		assert.equal(true, true);
+	})();
+
+	advent.displayResults(answer1(str), answer2(str));
+})(require("./lib/advent.js"));

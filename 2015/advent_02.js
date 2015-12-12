@@ -51,15 +51,13 @@
 	PART TWO:
 	How many total feet of ribbon should they order?
 */
-var fs = require("fs"),
-	assert = require("assert"),
-	input = fs.readFileSync("./inputs/advent_02.txt", "utf8").split("\n");
-
-;(function (input) {
-	var answer1 = 0,
+;(function (advent) {
+	var input = advent.getInputArray(2),
+		assert = require("assert"),
+		answer1 = 0,
 		answer2 = 0;
 
-	function Gift(str) {
+	function Gift (str) {
 		var d = str.split("x");
 
 		this.width = Number.parseInt(d[0]);
@@ -88,14 +86,18 @@ var fs = require("fs"),
 		}, 0) - (Math.max.apply(null, this.dimensions.lengths) * 2) + this.volume;
 	}
 
-	var test1 = new Gift("2x3x4"),
-		test2 = new Gift("1x1x10");
+	// Run tests to confirm requirements have been met
+	(function runTests () {
+		var test1 = new Gift("2x3x4"),
+			test2 = new Gift("1x1x10");
 
-	assert.equal(test1.wrappingPaper, 58);
-	assert.equal(test2.wrappingPaper, 43);
-	assert.equal(test1.ribbon, 34);
-	assert.equal(test2.ribbon, 14);
+		assert.equal(test1.wrappingPaper, 58);
+		assert.equal(test2.wrappingPaper, 43);
+		assert.equal(test1.ribbon, 34);
+		assert.equal(test2.ribbon, 14);		
+	})();
 
+	// Get answers
 	input.forEach(function(str) {
 		var giftInfo = new Gift(str);
 
@@ -103,6 +105,5 @@ var fs = require("fs"),
 		answer2 += giftInfo.ribbon;
 	});
 
-	console.log("Answer #1:", answer1);
-	console.log("Answer #2:", answer2);
-})(input);
+	advent.displayResults(answer1, answer2);
+})(require("./lib/advent.js"));

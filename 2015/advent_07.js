@@ -51,11 +51,10 @@
  	{input} -> {output}
  	{number} -> {output}
  */
-var fs = require("fs"),
-	input = fs.readFileSync("./inputs/advent_07.txt", "utf8").split("\n");
-
-;(function (inputs) {
-	var answer1,
+;(function (advent) {
+	var inputs = advent.getInputArray(7),
+		assert = require("assert"),
+		answer1,
 		answer2,
 		machine = {};
 
@@ -72,15 +71,20 @@ var fs = require("fs"),
 
 				Object.defineProperty(machine, output, {
 					get: function () {
+						var output;
+
 						switch (action) {
-							case "AND":    return this[input]  & this[input2]; break;
-							case "OR":     return this[input]  | this[input2]; break;
-							case "LSHIFT": return this[input] << this[input2]; break;
-							case "RSHIFT": return this[input] >> this[input2]; break;
+							case "AND":    output = this[input]  & this[input2]; break;
+							case "OR":     output = this[input]  | this[input2]; break;
+							case "LSHIFT": output = this[input] << input2; break;
+							case "RSHIFT": output = this[input] >> input2; break;
 							default:
 								console.log("Unrecognized action", action);
 								return 0;
 						}
+
+						console.log("parts", parts, " // output", output);
+						return output;
 					}
 				});
 				break;
@@ -117,11 +121,16 @@ var fs = require("fs"),
 				}
 		}
 	});
+	
+	// Run tests to confirm requirements have been met
+	(function runTests () {
+
+	})();
+
 	console.log(machine);
 
 	answer1 = machine["a"];
 	answer2 = null;
 
-	console.log("Answer #1:", answer1);
-	console.log("Answer #2:", answer2);
-})(input);
+	advent.displayResults(answer1(input), answer2(input));
+})(require("./lib/advent.js"));
