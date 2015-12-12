@@ -8,6 +8,7 @@
 	Describe answer #2
 */
 var fs = require("fs"),
+	assert = require("assert"),
 	input = fs.readFileSync("./inputs/advent_##.txt", "utf8"); //.split("\n"); // if multi-line to change to array
 
 ;(function (input) {

@@ -1,12 +1,12 @@
 /*
-	Santa is trying to deliver presents in a large apartment building, but he can't find 
-	the right floor - the directions he got are a little confusing. He starts on the 
+	Santa is trying to deliver presents in a large apartment building, but he can't find
+	the right floor - the directions he got are a little confusing. He starts on the
 	ground floor (floor 0) and then follows the instructions one character at a time.
 
-	An opening parenthesis, (, means he should go up one floor, and a closing parenthesis, 
+	An opening parenthesis, (, means he should go up one floor, and a closing parenthesis,
 	), means he should go down one floor.
 
-	The apartment building is very tall, and the basement is very deep; he will never 
+	The apartment building is very tall, and the basement is very deep; he will never
 	find the top or bottom floors.
 
 	PART ONE:
@@ -19,14 +19,13 @@ var fs = require("fs"),
 	input = fs.readFileSync("./inputs/advent_01.txt", "utf8");
 
 ;(function (input) {
-	var answer1,
-		answer2 = 0,
-		sorted = input.split("").sort().join(""),
+	var sorted = input.split("").sort().join(""),
 		numUp = sorted.indexOf(")"),
 		numDown = sorted.length - numUp,
-		curFloor = 0;
+		answer1 = numUp - numDown,
 
-	answer1 = numUp - numDown;
+		answer2 = 0,
+		curFloor = 0;
 
 	input.split("").some(function (dir) {
 		answer2++;

@@ -41,27 +41,24 @@
 	memory for string values (0 + 3 + 7 + 1 = 11) is 23 - 11 = 12.
 */
 var fs = require("fs"),
-	input = fs.readFileSync("./inputs/advent_08.txt", "utf8").split("\n");
+	fileName = "./inputs/advent_08.txt",
+	input = fs.readFileSync(fileName, "utf8").split("\n"),
+	fileStats = fs.statSync(fileName);
 
-;(function (input) {
+;(function (input, fileStats) {
 	var answer1 = 0,
-		answer2;
+		answer2,
+		computedLength = 0,
+		fileChars = fileStats.size - input.length;
 
 	input.forEach(function (str) {
-		var computedLength = str.length,
-			parsed = escape(str)
-				.replace(/%22/g, "\\\"")
-				.replace(/%5C/g, "\\\\")
-				.replace(/%(..)/g, "\\x$1"),
-			parsedLength = parsed.length + 2, // add quotes
-			difference = parsedLength - computedLength;
-
-		// console.log(str, computedLength, "vs", parsed, parsedLength, "==>", difference);
-		console.log("\"" + parsed + "\"");
-
-		answer1 += difference;
+		str = str.substring(1,str.length-1); // strip off the beginning and end quotes
+		computedLength += str.length;
 	});
+
+	console.log("Computed Length:", computedLength, " // File Size:", fileStats.size, " // File Chars:", fileChars);
+	answer1 = fileChars - computedLength;
 
 	console.log("Answer #1:", answer1);
 	console.log("Answer #2:", answer2);
-})(input);
+})(input, fileStats);
