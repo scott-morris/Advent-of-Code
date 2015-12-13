@@ -34,7 +34,9 @@
 	what signal is ultimately provided to wire a?
 
 	PART TWO:
-	TBD
+	Now, take the signal you got on wire a, override wire b to that signal,
+	and reset the other wires (including wire a). What new signal is
+	ultimately provided to wire a?
 */
 
 /*
@@ -52,85 +54,135 @@
  	{number} -> {output}
  */
 ;(function (advent) {
-	var inputs = advent.getInputArray(7),
+	"use strict";
+
+	var input = advent.getInputArray(7),
 		assert = require("assert"),
 		answer1,
-		answer2,
-		machine = {};
+		answer2;
 
-	inputs.forEach(function (input) {
-		var parts = input.split(" "),
-			input, input2, action, output;
+	function addDefinition (machine, def) {
+		var parts = def.split(" "),
+			input1, input2, action, output;
 
 		switch (parts.length) {
 			case 5:
-				input = parts[0];
+				input1 = parts[0];
 				action = parts[1];
 				input2 = parts[2];
 				output = parts[4];
 
-				Object.defineProperty(machine, output, {
-					get: function () {
-						var output;
+				// With 5 parts, input1 is always needed
+				if (isNaN(input1) && !machine.hasOwnProperty(input1)) {
+					// not ready yet
+					break;
+				}
 
-						switch (action) {
-							case "AND":    output = this[input]  & this[input2]; break;
-							case "OR":     output = this[input]  | this[input2]; break;
-							case "LSHIFT": output = this[input] << input2; break;
-							case "RSHIFT": output = this[input] >> input2; break;
-							default:
-								console.log("Unrecognized action", action);
-								return 0;
-						}
+				// With AND and OR operations, input2 is needed
+				if ((action === "AND" || action === "OR") && isNaN(input2) && !machine.hasOwnProperty(input2)) {
+					// not ready yet
+					break;
+				}
 
-						console.log("parts", parts, " // output", output);
-						return output;
-					}
-				});
+				// If machine already has definition, skip
+				if (machine.hasOwnProperty(output)) {
+					break;
+				}
+
+				// With SHIFT operations, input2 needs to be a number
+				if ((action === "LSHIFT" || action === "RSHIFT") && isNaN(input2)) {
+					throw("Invalid shift expression: " + def);
+				}
+
+				input1 = (isNaN(input1)) ? machine[input1] : parseInt(input1, 10);
+				input2 = (isNaN(input2)) ? machine[input2] : parseInt(input2, 10);
+
+				switch (action) {
+					case "AND":    machine[output] = input1  & input2; break;
+					case "OR":     machine[output] = input1  | input2; break;
+					case "LSHIFT": machine[output] = input1 << input2; break;
+					case "RSHIFT": machine[output] = input1 >> input2; break;
+					default: throw("Invalid 5-part expression: " + def);
+				}
 				break;
 
 			case 4:
 				action = parts[0];
-				input = parts[1];
+				input1 = parts[1];
 				output = parts[3];
 
-				Object.defineProperty(machine, output, {
-					get: function () {
-						if (action === "NOT") {
-							return ~ this[input];
-						} else {
-							console.log("Unrecognized action", action);
-							return 0;
-						}
-					}
-				});
+				if (isNaN(input1) && !machine.hasOwnProperty(input1)) {
+					// not ready yet
+					break;
+				}
+
+				// If machine already has definition, skip
+				if (machine.hasOwnProperty(output)) {
+					break;
+				}
+
+				input1 = (isNaN(input1)) ? machine[input1] : parseInt(input1, 10);
+
+				if (action === "NOT") {
+					machine[output] = ~input1;
+				} else {
+					throw("Invalid 4-part expression: " + def);
+				}
 				break;
 
 			case 3:
-				input = parts[0];
+				input1 = parts[0];
 				output = parts[2];
 
-				if (isNaN(input)) {
-					Object.defineProperty(machine, output, {
-						get: function () {
-							return this[input];
-						}
-					});
-				} else {
-					machine[output] = parseInt(input, 10);
+				if (isNaN(input1) && !machine.hasOwnProperty(input1)) {
+					// not ready yet
+					break;
 				}
+
+				// If machine already has definition, skip
+				if (machine.hasOwnProperty(output)) {
+					break;
+				}
+
+				machine[output] = (isNaN(input1)) ? machine[input1] : parseInt(input1, 10);
+				break;
+
+			default:
+				console.log("NOT PROCESSED:" + def);
 		}
-	});
-	
+
+		// console.log("machine[" + output + "] defined", machine[output]);
+		return machine.hasOwnProperty(output);
+	}
+
 	// Run tests to confirm requirements have been met
-	(function runTests () {
+	// (function runTests () {
 
-	})();
+	// })();
 
-	console.log(machine);
+	function buildMachine(defs, startingObj) {
+		var iterations = 0,
+			lastCount = defs.length,
+			machine = startingObj || {};
 
-	answer1 = machine["a"];
-	answer2 = null;
+		do {
+			defs = defs.filter(function (def) {
+				return !addDefinition(machine, def);
+			});
 
-	advent.displayResults(answer1(input), answer2(input));
+			// Sanity check to make sure we don't get caught in an endless loop
+			if (defs.length === lastCount) {
+				console.log(machine);
+				throw("No progress");
+			}
+			lastCount = defs.length;
+		} while (defs.length > 0);
+
+		return machine;
+	}
+
+	answer1 = buildMachine(input);
+	answer2 = buildMachine(input, { b: answer1.a });
+
+	advent.displayResults(answer1.a, answer2.a);
 })(require("./lib/advent.js"));
