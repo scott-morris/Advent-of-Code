@@ -72,7 +72,7 @@
 			} else {
 				this.track[node] = 0;
 			}
-		}
+		};
 	}
 
 	function answer1 (input) {

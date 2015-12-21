@@ -30,13 +30,44 @@
 	PART TWO:
 	TBD
 */
-var fs = require("fs"),
-	input = fs.readFileSync("./inputs/advent_09.txt", "utf8").split("\n");
+;(function (advent) {
+	var input = advent.getInputArray(9),
+		tsp = require("./lib/tsp.js"),
+		assert = require("assert"),
+		map = {};
 
-;(function (input) {
-	var answer1,
-		answer2;
+	// Builds a 2-level object with corresponding distances between two points
+	// var distanceBetween = map["src"]["dest"];
+	function buildMap (input) {
+		input.forEach(function (mapDef) {
+			var mapInfo = mapDef.match(/(\w+) to (\w+) = (\d+)/i);
+				src = mapInfo[1],
+				dest = mapInfo[2],
+				dist = parseInt(mapInfo[3], 10);
 
-	console.log("Answer #1:", answer1);
-	console.log("Answer #2:", answer2);
-})(input);
+			if (!map.hasOwnProperty(src))  { map[src]  = {}; };
+			if (!map.hasOwnProperty(dest)) { map[dest] = {}; };
+
+			map[src][dest] = dist;
+			map[dest][src] = dist;
+		});
+	}
+
+	function answer1 (str) {
+
+	}
+
+	function answer2 (str) {
+
+	}
+
+	buildMap(input);
+	console.log(map);
+
+	// Run tests to confirm requirements have been met
+	(function runTests () {
+		assert.equal(true, true);
+	})();
+
+	advent.displayResults(answer1(str), answer2(str));
+})(require("./lib/advent.js"));
