@@ -40,25 +40,51 @@
 	string code (2 + 5 + 10 + 6 = 23) minus the total number of characters in
 	memory for string values (0 + 3 + 7 + 1 = 11) is 23 - 11 = 12.
 */
-var fs = require("fs"),
-	fileName = "./inputs/advent_08.txt",
-	input = fs.readFileSync(fileName, "utf8").split("\n"),
-	fileStats = fs.statSync(fileName);
+;(function (advent) {
+	var input = advent.getInputArray(8),
+		assert = require("assert");
 
-;(function (input, fileStats) {
-	var answer1 = 0,
-		answer2,
-		computedLength = 0,
-		fileChars = fileStats.size - input.length;
+	function lineDifference (rawString) {
+		var computedLength = rawString.length,
+			rawLength = 0,
+			result,
+			transforms = [{
+				"searchFor": /^"(.*)"$/,
+				"replaceWith": '$1'
+			},{
+				"searchFor": /\\\\/g,
+				"replaceWith": '\\'
+			},{
+				"searchFor": /\\\"/g,
+				"replaceWith": '"'
+			},{
+				"searchFor": /\\x(0-9A-Fa-f]{2})/g,
+				"replaceWith": function (match) {
+					return String.fromCodePoint(parseInt(match, 16));
+				}
+			}];
 
-	input.forEach(function (str) {
-		str = str.substring(1,str.length-1); // strip off the beginning and end quotes
-		computedLength += str.length;
-	});
+		result = rawLength - computedLength;
 
-	console.log("Computed Length:", computedLength, " // File Size:", fileStats.size, " // File Chars:", fileChars);
-	answer1 = fileChars - computedLength;
+		return result;
+	}
 
-	console.log("Answer #1:", answer1);
-	console.log("Answer #2:", answer2);
-})(input, fileStats);
+	function answer1 () {
+		var result = 0,
+			computedLength;
+	}
+
+	function answer2 () {
+
+	}
+
+	// Run tests to confirm requirements have been met
+	(function runTests () {
+		assert.equal(lineDifference('""'), 2);
+		assert.equal(lineDifference('"abc"'), 2);
+		assert.equal(lineDifference('"aaa\"aaa"'), 3);
+		assert.equal(lineDifference('"\x27"'), 5);
+	})();
+
+	advent.displayResults(answer1(), answer2());
+})(require("./lib/advent.js"));
