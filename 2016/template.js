@@ -1,11 +1,11 @@
 /*
-	Problem description
+Problem description
 
-	PART ONE:
-	Describe answer #1
+PART ONE:
+Describe answer #1
 
-	PART TWO:
-	Describe answer #2
+PART TWO:
+Describe answer #2
 */
 "use strict"
 
