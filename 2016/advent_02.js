@@ -78,7 +78,7 @@ Describe answer #2
 "use strict"
 
 const advent = require("./lib/advent.js")
-const input = advent.getInputArray(2)
+const input = advent.getInput(2)
 const assert = require("assert")
 
 const keypadSetup1 = [
