@@ -1,8 +1,4 @@
 /*
-Problem description
-
-PART ONE:
-
 Finally, you come across an information kiosk with a list of rooms. Of course,
 the list is encrypted and full of decoy data, but the instructions to decode
 the list are barely hidden nearby. Better remove the decoy data first.
@@ -22,6 +18,7 @@ example:
 	- not-a-real-room-404[oarel] is a real room.
 	- totally-real-room-200[decoy] is not.
 
+PART ONE:
 Of the real rooms from the list above, the sum of their sector IDs is 1514.
 
 PART TWO:
@@ -54,16 +51,13 @@ const ALPHA_BASE = "a".charCodeAt(0) - 1
 
 const shiftLetter = (letter, shiftBy) => {
 	let letterIndex = letter.charCodeAt(0) - ALPHA_BASE
-	letterIndex = (letterIndex + shiftBy) % 26
-	return String.fromCharCode(ALPHA_BASE + letterIndex)
+	let newLetterIndex = (letterIndex + shiftBy) % 26
+	return String.fromCharCode(ALPHA_BASE + newLetterIndex)
 }
 
-const decrypt = (str, shiftBy) => {
-	return str.replace(/[a-z\-]/g, (letter) => {
-		let replacement = (letter === "-") ? " " : shiftLetter(letter, shiftBy)
-		return replacement
-	})
-}
+const decrypt = (str, shiftBy) =>
+	str.replace(/[a-z\-]/g, (letter) =>
+		(letter === "-") ? " " : shiftLetter(letter, shiftBy))
 
 class Room {
 	constructor (spec) {
@@ -86,7 +80,7 @@ class Room {
 		let letterList = Object.keys(letters).map((letter) => {
 			return {
 				"letter": letter,
-				"count": 0 - letters[letter]
+				"count": 0 - letters[letter] // we want this to be negative for sorting
 			}
 		})
 
@@ -140,7 +134,8 @@ const answer2 = (input) => {
 
 	assert.equal(answer1(testData), 1514)
 
-	assert.equal(decrypt("qzmt-zixmtkozy-ivhz", 343), "very encrypted name")
+	let testRoom5 = new Room("qzmt-zixmtkozy-ivhz-343[zimth]")
+	assert.equal(testRoom5.realname, "very encrypted name")
 })()
 
 advent.displayResults(answer1(input), answer2(input))
