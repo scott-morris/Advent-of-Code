@@ -26,8 +26,9 @@ const answer1 = (input) => {
     for (let i=0; i<8; i++) {
         iteration = nextHashWithFiveZeroes(input, iteration.index)
         password += iteration.hash.charAt(5)
-        advent.log("Password", password)
+        advent.logLine(["Password: ".red.bold, (password + "*******").substring(0,8).green])
     }
+    console.log("")
 
     return password
 }
@@ -44,26 +45,39 @@ const answer2 = (input) => {
             sixthChar = parseInt(sixthChar, 10)
             if (password[sixthChar] === "*") {
                 password = replaceAt(password, sixthChar, iteration.hash.charAt(6))
-                advent.log("Hash found, password updated", password)
+                advent.logLine(["Password: ".red.bold, password.green])
             }
         }
     } while (/\*/.test(password))
+    console.log("")
 
     return password
 }
 
 // Run tests to confirm requirements have been met
-(function runTests () {
-    let testInfo1 = nextHashWithFiveZeroes("abc")
-    let testInfo2 = nextHashWithFiveZeroes("abc", testInfo1.index)
-    let testInfo3 = nextHashWithFiveZeroes("abc", testInfo2.index)
+// Run tests to confirm requirements have been met
 
-    assert.equal(testInfo1.index, 3231929)
-    assert.equal(testInfo2.index, 5017308)
-    assert.equal(testInfo3.index, 5278568)
-    assert.equal(answer1("abc"), "18f47a30")
-
-    assert.equal(answer2("abc"), "05ace8e3")
-})()
+let testInfo
+advent.runTests([
+    () => {
+        testInfo = nextHashWithFiveZeroes("abc")
+        assert.equal(testInfo.index, 3231929)
+    },
+    () => {
+        testInfo = nextHashWithFiveZeroes("abc", testInfo.index)
+        assert.equal(testInfo.index, 5017308)
+    },
+    () => {
+        testInfo = nextHashWithFiveZeroes("abc", testInfo.index)
+        assert.equal(testInfo.index, 5278568)
+    },
+    () => {
+        assert.equal(answer1("abc"), "18f47a30")
+    },
+    () => {
+        assert.equal(answer2("abc"), "05ace8e3")
+    }
+])
 
 advent.displayResults(answer1(input), answer2(input))
+process.exit(0)

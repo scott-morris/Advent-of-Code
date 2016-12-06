@@ -75,19 +75,25 @@ const answer2 = (walker) => {
 }
 
 // Run tests to confirm requirements have been met
-const runTests = () => {
-    let test1 = new Walker("R2, L3")
-    let test2 = new Walker("R2, R2, R2")
-    let test3 = new Walker("R5, L5, R5, R3")
+advent.runTests([
+    () => {
+        let test1 = new Walker("R2, L3")
+        assert.equal(answer1(test1), 5)
+    },
+    () => {
+        let test2 = new Walker("R2, R2, R2")
+        assert.equal(answer1(test2), 2)
+    },
+    () => {
+        let test3 = new Walker("R5, L5, R5, R3")
+        assert.equal(answer1(test3), 12)
+    },
+    () => {
+        let test4 = new Walker("R8, R4, R4, R8")
+        assert.equal(answer2(test4), 4)
+    }
+])
 
-    assert.equal(answer1(test1), 5)
-    assert.equal(answer1(test2), 2)
-    assert.equal(answer1(test3), 12)
-
-    let test4 = new Walker("R8, R4, R4, R8")
-    assert.equal(answer2(test4), 4)
-}
-
-runTests()
 let walker = new Walker(input)
 advent.displayResults(answer1(walker), answer2(walker))
+process.exit(0)

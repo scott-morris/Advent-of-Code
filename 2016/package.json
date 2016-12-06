@@ -19,6 +19,7 @@
   "dependencies": {
     "colors": "^1.1.2",
     "fs": "0.0.1-security",
-    "js-md5": "^0.4.1"
+    "js-md5": "^0.4.1",
+    "native-promise-only": "^0.8.1"
   }
 }
