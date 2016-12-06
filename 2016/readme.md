@@ -6,10 +6,15 @@ This year, I wanted to do the challenges using ES6
 ## TO DO:
 ### Overall
 * Setup `/server` to host solutions, display via browser?
-* Change `console.log()` to use `readline`
-    - https://nodejs.org/api/readline.html
 * Set command line parameter to skip unit tests (for the ones that take a while to finish)
-* Separate the problem description from the `js` file to get a better idea of the size of the solution
+* Rearrange folder structure to be
+    - `./2016/advent_{day}/index.js`
+    - `./2016/advent_{day}/readme.md`
+    - `./2016/advent_{day}/input.txt`
+* Update helper functions to work with new folder structure
+* Clean up unit testing logging
+* Pass options to unit testing function - `title`, `runParallel`?
+* Create `npm script` to run `index.js` from `--day`
 
 ### Day-Specific
-* Day 5 - add "fun animation" to password cracking
+* n/a
