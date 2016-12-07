@@ -42,6 +42,7 @@ const runTests = (testCases) => {
 }
 
 const displayResults = (answer1, answer2) => {
+	console.log("")
 	log("Answer #1", answer1)
 	log("Answer #2", answer2)
 }
