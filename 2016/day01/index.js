@@ -69,29 +69,16 @@ class Walker {
 const answer1 = (walker) => Math.abs(walker.x) + Math.abs(walker.y)
 
 const answer2 = (walker) => {
-    const firstDupe = walker.dupes[0]
-    const coords = firstDupe.split(",")
-    return Math.abs(coords[0]) + Math.abs(coords[1])
+    const firstDupeCoords = walker.dupes[0].split(",")
+    return Math.abs(firstDupeCoords[0]) + Math.abs(firstDupeCoords[1])
 }
 
 // Run tests to confirm requirements have been met
 advent.runTests([
-    () => {
-        let test1 = new Walker("R2, L3")
-        assert.equal(answer1(test1), 5)
-    },
-    () => {
-        let test2 = new Walker("R2, R2, R2")
-        assert.equal(answer1(test2), 2)
-    },
-    () => {
-        let test3 = new Walker("R5, L5, R5, R3")
-        assert.equal(answer1(test3), 12)
-    },
-    () => {
-        let test4 = new Walker("R8, R4, R4, R8")
-        assert.equal(answer2(test4), 4)
-    }
+    () => { assert.equal(answer1(new Walker("R2, L3")), 5) },
+    () => { assert.equal(answer1(new Walker("R2, R2, R2")), 2) },
+    () => { assert.equal(answer1(new Walker("R5, L5, R5, R3")), 12) },
+    () => { assert.equal(answer2(new Walker("R8, R4, R4, R8")), 4) }
 ])
 
 let walker = new Walker(input)
