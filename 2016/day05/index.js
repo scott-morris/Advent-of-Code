@@ -1,8 +1,8 @@
 // http://adventofcode.com/2016/day/5
 "use strict"
 
-const advent = require("./lib/advent.js")
-const input = advent.getInput(5)
+const advent = require("../lib/advent.js")
+const input = advent.getInput()
 const assert = require("assert")
 const md5 = require("js-md5")
 

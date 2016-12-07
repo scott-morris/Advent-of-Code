@@ -1,8 +1,8 @@
 // http://adventofcode.com/2016/day/3
 "use strict"
 
-const advent = require("./lib/advent.js")
-const input = advent.getInput(3)
+const advent = require("../lib/advent.js")
+const input = advent.getInput()
 const assert = require("assert")
 
 const parseLine = (line) => {

@@ -1,8 +1,8 @@
 // http://adventofcode.com/2016/day/7
 "use strict"
 
-const advent = require("./lib/advent.js")
-const input = advent.getInput(7)
+const advent = require("../lib/advent.js")
+const input = advent.getInput()
 const assert = require("assert")
 
 const regExps = {

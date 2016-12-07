@@ -2,6 +2,7 @@
 if (typeof Promise === 'undefined') { require('native-promise-only'); }
 
 const fs = require("fs")
+const path = require("path")
 const colors = require("colors")
 const readline = require("readline")
 const rl = readline.createInterface({
@@ -9,9 +10,8 @@ const rl = readline.createInterface({
   output: process.stdout
 })
 
-const fileName = (day) => `./inputs/advent_${(day < 10) ? "0" + day : day}.txt`
-const getInput = (day) => {
-	let contents = fs.readFileSync(fileName(day), "utf8")
+const getInput = () => {
+	let contents = fs.readFileSync(path.join(process.cwd(),`input.txt`), "utf8")
 	return (contents.indexOf("\n") > -1) ? contents.split("\n") : contents
 }
 
@@ -48,7 +48,6 @@ const displayResults = (answer1, answer2) => {
 }
 
 module.exports = {
-	fileName,
 	getInput,
 	log,
 	logLine,

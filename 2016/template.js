@@ -1,24 +1,19 @@
-/*
-Problem description
-
-PART ONE:
-Describe answer #1
-
-PART TWO:
-Describe answer #2
-*/
+// http://adventofcode.com/2016/day/${1:day}
 "use strict"
 
-const advent = require("./lib/advent.js")
-const input = advent.getInput(1)
+const advent = require("../lib/advent.js")
+const input = advent.getInput()
 const assert = require("assert")
 
 const answer1 = (input) => {}
 const answer2 = (input) => {}
 
 // Run tests to confirm requirements have been met
-(function runTests () {
-	assert.equal(true, true)
-})()
+advent.runTests([
+	() => {
+		assert.equal(true, true)
+	}
+])
 
 advent.displayResults(answer1(input), answer2(input))
+process.exit(0)

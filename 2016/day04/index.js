@@ -2,8 +2,8 @@
 "use strict"
 
 const _ = require("lodash")
-const advent = require("./lib/advent.js")
-const input = advent.getInput(4)
+const advent = require("../lib/advent.js")
+const input = advent.getInput()
 const assert = require("assert")
 
 const parseSpec = /^([a-z\-]+)-(\d+)\[([a-z]+)\]$/
