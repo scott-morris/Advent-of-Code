@@ -5,13 +5,15 @@ const fs = require("fs")
 const path = require("path")
 const colors = require("colors")
 const readline = require("readline")
+
 const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout
 })
 
-const getInput = () => {
-	let contents = fs.readFileSync(path.join(process.cwd(),`input.txt`), "utf8")
+const getInput = (dirName) => {
+    dirName = dirName || process.cwd()
+	let contents = fs.readFileSync(path.join(dirName,`input.txt`), "utf8")
 	return (contents.indexOf("\n") > -1) ? contents.split("\n") : contents
 }
 

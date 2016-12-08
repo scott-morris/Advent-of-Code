@@ -2,7 +2,7 @@
 "use strict"
 
 const advent = require("../lib/advent.js")
-const input = advent.getInput()
+const input = advent.getInput(__dirname)
 const assert = require("assert")
 
 const cardinals = {
