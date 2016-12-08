@@ -26,3 +26,4 @@ For example:
 
 How many IPs in your puzzle input support SSL?
 
+http://adventofcode.com/2016/day/7

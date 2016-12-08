@@ -6,7 +6,7 @@ and nobody had time to work them out further.
 
 The Document indicates that you should start at the given coordinates
 (where you just landed) and face North. Then, follow the provided
-sequence: either turn left (L) or right (R) 90 degrees, then walk
+sequence: either turn left (`L`) or right (`R`) 90 degrees, then walk
 forward the given number of blocks, ending at a new intersection.
 
 There's no time to follow such ridiculous instructions on foot, though,
@@ -29,7 +29,9 @@ Then, you notice the instructions continue on the back of the Recruiting
 Document. Easter Bunny HQ is actually at the first location you visit
 twice.
 
-For example, if your instructions are R8, R4, R4, R8, the first location
-you visit twice is 4 blocks away, due East.
+For example, if your instructions are `R8, R4, R4, R8`, the first location
+you visit twice is `4` blocks away, due East.
 
 How many blocks away is the first location you visit twice?
+
+http://adventofcode.com/2016/day/1

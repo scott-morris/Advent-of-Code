@@ -27,8 +27,8 @@ position. For example, suppose you had recorded the following messages:
     dvrsen
     enarar
 
-The most common character in the first column is e; in the second, a; in the
-third, s, and so on. Combining these characters returns the error-corrected
+The most common character in the first column is `e`; in the second, `a`; in the
+third, `s`, and so on. Combining these characters returns the error-corrected
 message, `easter`.
 
 Given the recording in your puzzle input, what is the error-corrected version of the message being sent?
@@ -42,3 +42,4 @@ In the above example, the least common character in the first column is `a`; in 
 
 Given the recording in your puzzle input and this new decoding methodology, what is the original message that Santa is trying to send?
 
+http://adventofcode.com/2016/day/6
