@@ -9,22 +9,21 @@ const getMarker = (str) => {
 	const markerRegEx = /\(\d+x\d+\)/
 	const markerInfoRegEx = /^\((\d+)x(\d+)\)$/
 
-	let marker = markerRegEx.exec(str)
-	if (marker === null) { return false }
+	let markerMatch = markerRegEx.exec(str)
+	if (markerMatch === null) { return false }
 
-	let markerInfo = markerInfoRegEx.exec(marker[0])
-	let markerText = markerInfo[0]
-	let numChars = parseInt(markerInfo[1], 10)
-	let numTimes = parseInt(markerInfo[2], 10)
-
-	return {
-		textBefore: str.substr(0, marker.index),
-		text: str.substr(marker.index+markerText.length, numChars),
-		textAfter: str.substring(marker.index + markerText.length + numChars),
-		markerText,
-		numChars,
-		numTimes
+	let markerInfo = markerInfoRegEx.exec(markerMatch[0])
+	let marker = {
+		specText: markerInfo[0],
+		numChars: parseInt(markerInfo[1], 10),
+		numTimes: parseInt(markerInfo[2], 10),
 	}
+
+	return Object.assign({}, marker, {
+		text: str.substr(markerMatch.index + marker.specText.length, marker.numChars),
+		textBefore: str.substr(0, markerMatch.index),
+		textAfter: str.substring(markerMatch.index + marker.specText.length + marker.numChars)
+	})
 }
 
 const calcDecompressedSize = (str) => {
@@ -42,7 +41,6 @@ const calcDecompressedSize = (str) => {
 const decompress = (str) => {
 	let output = ""
 	let markerInfo
-
 	while ((markerInfo = getMarker(str)) !== false) {
 		output += markerInfo.textBefore + markerInfo.text.repeat(markerInfo.numTimes)
 		str = markerInfo.textAfter
