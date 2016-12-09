@@ -5,74 +5,50 @@ const advent = require("../lib/advent.js")
 const input = advent.getInput(__dirname)
 const assert = require("assert")
 
-const markerRegEx = /\(\d+x\d+\)/
-
-const getMarkerInfo = (markerText) => {
+const getMarker = (str) => {
+	const markerRegEx = /\(\d+x\d+\)/
 	const markerInfoRegEx = /^\((\d+)x(\d+)\)$/
 
-	if (!markerInfoRegEx.test(markerText)) {
-		throw new Error(`"${markerText}" does not match marker syntax`)
-	}
+	let marker = markerRegEx.exec(str)
+	if (marker === null) { return false }
 
-	let markerInfo = markerInfoRegEx.exec(markerText)
+	let markerInfo = markerInfoRegEx.exec(marker[0])
+	let markerText = markerInfo[0]
+	let numChars = parseInt(markerInfo[1], 10)
+	let numTimes = parseInt(markerInfo[2], 10)
 
 	return {
-		fullText: markerText,
-		numChars: parseInt(markerInfo[1], 10),
-		numTimes: parseInt(markerInfo[2], 10)
+		textBefore: str.substr(0, marker.index),
+		text: str.substr(marker.index+markerText.length, numChars),
+		textAfter: str.substring(marker.index + markerText.length + numChars),
+		markerText,
+		numChars,
+		numTimes
 	}
 }
 
 const calcDecompressedSize = (str) => {
-	let marker, markerText, markerInfo
+	let markerInfo
 	let size = 0
-	while ((marker = markerRegEx.exec(str)) !== null) {
-		// count everything before the marker
-		size += marker.index
-		str = str.substring(marker.index)
-
-		// then process the marker
-		markerInfo = getMarkerInfo(marker[0])
-
-		// take the marker out of the source string
-		str = str.substring(markerInfo.fullText.length)
-
-		// Recursively call this function with the marker substring
-		size += (calcDecompressedSize(str.substring(0, markerInfo.numChars)) * markerInfo.numTimes)
-
-		// Update the working string
-		str = str.substring(markerInfo.numChars)
+	while ((markerInfo = getMarker(str)) !== false) {
+		size += markerInfo.textBefore.length +
+				(calcDecompressedSize(markerInfo.text) * markerInfo.numTimes)
+		str = markerInfo.textAfter
 	}
 	// Count the remaining contents
-	size += str.length
-
-	return size
+	return size + str.length
 }
 
 const decompress = (str) => {
 	let output = ""
-	let marker, markerInfo
+	let markerInfo
 
-	while ((marker = markerRegEx.exec(str)) !== null) {
-		// take everything before the marker
-		output += str.substr(0, marker.index)
-		str = str.substring(marker.index)
-
-		// then process the marker
-		markerInfo = getMarkerInfo(marker[0])
-
-		// take the marker out of the source string
-		str = str.substring(markerInfo.fullText.length)
-
-		output += str.substring(0, markerInfo.numChars).repeat(markerInfo.numTimes)
-
-		// update the working string
-		str = str.substring(markerInfo.numChars)
+	while ((markerInfo = getMarker(str)) !== false) {
+		output += markerInfo.textBefore + markerInfo.text.repeat(markerInfo.numTimes)
+		str = markerInfo.textAfter
 	}
 	// Grab the remaining contents
-	output += str
-
-	return output
+	return output + str
 }
 
 const answer1 = (input) => decompress(input).length
