@@ -1,7 +1,7 @@
 # Day 9: Explosives in Cyberspace
 http://adventofcode.com/2016/day/9
 
-## PART ONE
+## Part One:
 Wandering around a secure area, you come across a datalink port to a new part
 of the network. After briefly scanning it for interesting files, you find one
 file in particular that catches your attention. It's compressed with an
@@ -38,7 +38,7 @@ For example:
 **What is the decompressed length of the file (your puzzle input)? Don't count
 whitespace.**
 
-## PART TWO
+## Part Two:
 
 Apparently, the file actually uses **version two** of the format.
 
