@@ -1,7 +1,7 @@
 # Day 5: How About a Nice Game of Chess?
 http://adventofcode.com/2016/day/5
 
-## PART ONE:
+## Part One:
 You are faced with a security door designed by Easter Bunny engineers that
 seem to have acquired most of their security knowledge by watching hacking
 movies.
@@ -27,9 +27,9 @@ For example, if the Door ID is `abc`:
 In this example, after continuing this search a total of eight times, the
 password is `18f47a30`.
 
-Given the actual Door ID, what is the password?
+**Given the actual Door ID, what is the password?**
 
-## PART TWO:
+## Part Two:
 As the door slides open, you are presented with a second door that uses a
 slightly more inspired security mechanism. Clearly unimpressed by the last
 version (in what movie is the password decrypted in order?!), the Easter Bunny
@@ -57,5 +57,4 @@ For example, if the Door ID is `abc`:
 You almost choke on your popcorn as the final character falls into place,
 producing the password `05ace8e3`.
 
-Given the actual Door ID and this new method, what is the password? Be extra
-proud of your solution if it uses a cinematic "decrypting" animation.
+**Given the actual Door ID and this new method, what is the password?** Be extra proud of your solution if it uses a cinematic "decrypting" animation.

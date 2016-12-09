@@ -1,7 +1,7 @@
 # Day 4: Security Through Obscurity
 http://adventofcode.com/2016/day/4
 
-## PART ONE:
+## Part One:
 Finally, you come across an information kiosk with a list of rooms. Of course,
 the list is encrypted and full of decoy data, but the instructions to decode
 the list are barely hidden nearby. Better remove the decoy data first.
@@ -23,7 +23,9 @@ example:
 
 Of the real rooms from the list above, the sum of their sector IDs is `1514`.
 
-## PART TWO:
+**What is the sum of the sector IDs of the real rooms?**
+
+## Part Two:
 With all the decoy data out of the way, it's time to decrypt this list and get
 moving.
 
@@ -39,4 +41,4 @@ number of times equal to the room's sector ID. `A` becomes `B`, `B` becomes
 For example, the real name for `qzmt-zixmtkozy-ivhz-343` is `very encrypted
 name`.
 
-What is the sector ID of the room where North Pole objects are stored?
+**What is the sector ID of the room where North Pole objects are stored?**

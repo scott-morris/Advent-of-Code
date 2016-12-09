@@ -1,7 +1,7 @@
 # Day 2: Bathroom Security
 http://adventofcode.com/2016/day/2
 
-## PART ONE:
+## Part One:
 You arrive at Easter Bunny Headquarters under cover of darkness. However, you
 left in such a rush that you forgot to use the bathroom! Fancy office
 buildings like this one usually have keypad locks on their bathrooms, so you
@@ -44,9 +44,9 @@ Suppose your instructions are:
 
 So, in this example, the bathroom code is `1985`.
 
-Your puzzle input is the instructions from the document you found at the front desk.
+Your puzzle input is the instructions from the document you found at the front desk. **What is the bathroom code?**
 
-## PART TWO:
+## Part Two:
 You finally arrive at the bathroom (it's a several minute walk from the lobby
 so visitors can behold the many fancy conference rooms and water coolers on
 this floor) and go to punch in the code. Much to your bladder's dismay, the
@@ -72,4 +72,4 @@ instructions as above, the outcome is very different:
 
 So, given the actual keypad layout, the code would be `5DB3`.
 
-Using the same instructions in your puzzle input, what is the correct bathroom code?
+**Using the same instructions in your puzzle input, what is the correct bathroom code?**

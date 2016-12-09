@@ -1,7 +1,7 @@
 # Day 1: No Time for a Taxicab
 http://adventofcode.com/2016/day/1
 
-## PART ONE:
+## Part One:
 You're airdropped near Easter Bunny Headquarters in a city somewhere.
 "Near", unfortunately, is as close as you can get - the instructions on
 the Easter Bunny Recruiting Document the Elves intercepted start here,
@@ -25,9 +25,9 @@ For example:
   which is `2` blocks away.
 - `R5, L5, R5, R3` leaves you `12` blocks away.
 
-How many blocks away is Easter Bunny HQ?
+**How many blocks away is Easter Bunny HQ?**
 
-## PART TWO:
+## Part Two:
 Then, you notice the instructions continue on the back of the Recruiting
 Document. Easter Bunny HQ is actually at the first location you visit
 twice.
@@ -35,4 +35,4 @@ twice.
 For example, if your instructions are `R8, R4, R4, R8`, the first location
 you visit twice is `4` blocks away, due East.
 
-How many blocks away is the first location you visit twice?
+**How many blocks away is the first location you visit twice?**
