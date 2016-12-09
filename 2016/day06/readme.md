@@ -1,3 +1,6 @@
+# Day 6: Signals and Noise
+http://adventofcode.com/2016/day/6
+
 ## PART ONE:
 Something is jamming your communications with Santa. Fortunately, your signal
 is only partially jammed, and protocol in situations like this is to switch to
@@ -41,5 +44,3 @@ In this modified code, the sender instead transmits what looks like random data,
 In the above example, the least common character in the first column is `a`; in the second, `d`, and so on. Repeating this process for the remaining characters produces the original message, `advent`.
 
 Given the recording in your puzzle input and this new decoding methodology, what is the original message that Santa is trying to send?
-
-http://adventofcode.com/2016/day/6

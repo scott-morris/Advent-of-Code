@@ -1,3 +1,6 @@
+# Day 7: Internet Protocol Version 7
+http://adventofcode.com/2016/day/7
+
 ## PART ONE:
 While snooping around the local network of EBHQ, you compile a list of IP addresses (they're IPv7, of course; IPv6 is much too limited). You'd like to figure out which IPs support **TLS** (transport-layer snooping).
 
@@ -25,5 +28,3 @@ For example:
 - `zazbz[bzb]cdb` supports SSL (`zaz` has no corresponding `aza`, but `zbz` has a corresponding `bzb`, even though `zaz` and `zbz` overlap).
 
 How many IPs in your puzzle input support SSL?
-
-http://adventofcode.com/2016/day/7

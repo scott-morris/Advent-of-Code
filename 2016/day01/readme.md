@@ -1,3 +1,6 @@
+# Day 1: No Time for a Taxicab
+http://adventofcode.com/2016/day/1
+
 ## PART ONE:
 You're airdropped near Easter Bunny Headquarters in a city somewhere.
 "Near", unfortunately, is as close as you can get - the instructions on
@@ -33,5 +36,3 @@ For example, if your instructions are `R8, R4, R4, R8`, the first location
 you visit twice is `4` blocks away, due East.
 
 How many blocks away is the first location you visit twice?
-
-http://adventofcode.com/2016/day/1

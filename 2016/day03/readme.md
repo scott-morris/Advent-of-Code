@@ -1,3 +1,6 @@
+# Day 3: Squares With Three Sides
+http://adventofcode.com/2016/day/3
+
 ## PART ONE:
 Now that you can think clearly, you move deeper into the labyrinth of hallways
 and office furniture that makes up this part of Easter Bunny HQ. This must be
@@ -33,5 +36,3 @@ digit would be part of the same triangle:
 
 In your puzzle input, and instead reading by columns, how many of the listed
 triangles are possible?
-
-http://adventofcode.com/2016/day/3

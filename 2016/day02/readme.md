@@ -1,3 +1,6 @@
+# Day 2: Bathroom Security
+http://adventofcode.com/2016/day/2
+
 ## PART ONE:
 You arrive at Easter Bunny Headquarters under cover of darkness. However, you
 left in such a rush that you forgot to use the bathroom! Fancy office
@@ -70,5 +73,3 @@ instructions as above, the outcome is very different:
 So, given the actual keypad layout, the code would be `5DB3`.
 
 Using the same instructions in your puzzle input, what is the correct bathroom code?
-
-http://adventofcode.com/2016/day/2

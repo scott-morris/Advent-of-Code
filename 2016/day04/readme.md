@@ -1,3 +1,6 @@
+# Day 4: Security Through Obscurity
+http://adventofcode.com/2016/day/4
+
 ## PART ONE:
 Finally, you come across an information kiosk with a list of rooms. Of course,
 the list is encrypted and full of decoy data, but the instructions to decode
@@ -37,5 +40,3 @@ For example, the real name for `qzmt-zixmtkozy-ivhz-343` is `very encrypted
 name`.
 
 What is the sector ID of the room where North Pole objects are stored?
-
-http://adventofcode.com/2016/day/4
