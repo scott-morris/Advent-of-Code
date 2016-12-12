@@ -1,4 +1,4 @@
-// http://adventofcode.com/2016/day/${1:day}
+// http://adventofcode.com/2016/day/11
 "use strict"
 
 const advent = require("../lib/advent.js")
@@ -28,7 +28,10 @@ class Floor {
 	get friedChips () {
 		// if a chip is ever left in the same area as another RTG, and it's
 		// not connected to its own RTG, the chip will be fried
-
+		let floor = this
+		return this.microchips.filter(chip => {
+			return (floor.generators.length > 0 && floor.generators.indexof(chip) === -1)
+		})
 	}
 }
 

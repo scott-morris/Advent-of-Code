@@ -1,5 +1,5 @@
 # Day 11: Radioisotope Thermoelectric Generators
-http://adventofcode.com/2016/day/
+http://adventofcode.com/2016/day/11
 
 ## Part One:
 You come upon a column of four floors that have been entirely sealed off from
