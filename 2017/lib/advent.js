@@ -17,7 +17,7 @@ const getInput = (dirName) => {
 	return (contents.indexOf("\n") > -1) ? contents.split("\n") : contents
 }
 
-const stringify = (value) => (typeof value === "object") ? JSON.stringify(value, null, "  ") : value
+const stringify = (value) => (typeof value === "object") ? JSON.stringify(value) : value
 const log = (key, value) => console.log(`${key}:`.red.bold, colors.green(stringify(value)))
 const logLine = (values) => {
 	readline.clearLine(rl, 0)
