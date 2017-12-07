@@ -1,4 +1,4 @@
-// http://adventofcode.com/2016/day/${1:day}
+// http://adventofcode.com/2017/day/3
 "use strict"
 
 const advent = require("../lib/advent.js")
