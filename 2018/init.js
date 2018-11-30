@@ -77,5 +77,7 @@ if (!fs.existsSync(credsFile)) {
 		fs.writeFileSync(outputFilePath, renderedContent, "utf8");
 	});
 
+	logger.loud(`Day ${day} successfully initialized into ${outputFolderPath}`.green.bold);
+
 	process.exit(0);
 })();
