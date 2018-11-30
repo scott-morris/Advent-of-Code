@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node ./run",
     "day": "node ./run",
-    "init": "node ./init"
+    "init": "node ./init",
+    "update": "node ./update-description"
   },
   "keywords": [],
   "author": "",
