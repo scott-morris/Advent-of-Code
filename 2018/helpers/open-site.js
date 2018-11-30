@@ -14,6 +14,10 @@ const SESSION_COOKIE = require("../.creds.js").sessionCookie;
 
 // Private.
 
+/**
+ * Set the AoC cookie to the value stored in the `.creds.js` file.
+ * @param {Object} page
+ */
 const setSessionCookie = async(page) => {
 	logger.log(`Setting session cookie`);
 	await page.setCookie({
@@ -25,7 +29,13 @@ const setSessionCookie = async(page) => {
 
 // Public.
 
-const openSite = async (year, day) => {
+/**
+ * Open a new instance of a Puppeteer browser and set the AoC
+ * cookie to the designated value.
+ * @returns {Object}
+ *
+ */
+const openSite = async () => {
 	const browser = await puppeteer.launch();
 	const page = await browser.newPage();
 
