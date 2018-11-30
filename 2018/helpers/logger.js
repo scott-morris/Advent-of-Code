@@ -30,17 +30,27 @@ const log = (...args) => {
 	}
 }
 
-const logObject = (value) => loud(stringify(value));
-
 const logKeyValue = (key, value) =>
-	loud(`${key}:`.red.bold, colors.green(stringify(value)));
+	(typeof key === "object") ?
+		Object.keys(key).forEach((k) => logKeyValue(k, key[k], depth+1)) :
+		loud(`${key}:`.red.bold, colors.green(stringify(value)));
 
+/**
+ * Consistently display the answers for AoC challenges.
+ * @param {*} answer1
+ * @param {*} answer2
+ */
 const displayResults = (answer1, answer2) => {
 	loud("");
 	logKeyValue("Answer #1", answer1)
 	logKeyValue("Answer #2", answer2)
 };
 
+/**
+ * Update a persistent line instead of adding newlines.
+ * This is useful for progress bars, etc.
+ * @param {Array<String>} values
+ */
 const line = (values) => {
 	readline.clearLine(rl, 0);
 	readline.cursorTo(process.stdout, 0);
@@ -52,7 +62,6 @@ module.exports = {
 	loud,
 	error: console.error,
 	warn: console.warn,
-	logObject,
 	logKeyValue,
 	displayResults,
 	line
