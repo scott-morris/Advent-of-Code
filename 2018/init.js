@@ -40,9 +40,16 @@ if (fs.existsSync(outputFolderPath)) {
 	process.exit(0);
 }
 
+// Check to see if the .creds.js file exists.
+const credsFile = path.join(__dirname, ".creds.js");
+if (!fs.existsSync(credsFile)) {
+	logger.warn(`The .creds.js file does not exist. Exiting`.red.bold);
+	process.exit(0);
+}
+
 (async () => {
 	// Create the directory.
-	fs.mkdir(outputFolderPath);
+	fs.mkdirSync(outputFolderPath);
 
 	// Attempt to read the description.
 	const siteInfo = await readSite(year, day);
