@@ -7,9 +7,9 @@ const assert = require("assert");
 
 // Dependencies.
 
-const getInput = require("../helpers/getInput");
+const getInput = require("../helpers/get-input");
 const logger = require("../helpers/logger");
-const testCases = require("../helpers/testCases");
+const testCases = require("../helpers/test-cases");
 
 // Private.
 

@@ -1,7 +1,6 @@
-# Day
+# Day {{day}}
 http://adventofcode.com/{{year}}/{{day}}/
 
-## Part One:
-{{description}}
+{{description1}}
 
-## Part Two:
+{{description2}}

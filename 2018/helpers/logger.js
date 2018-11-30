@@ -1,6 +1,7 @@
 "use strict";
 
 // Libraries.
+
 const colors = require("colors");
 const readline = require("readline");
 
@@ -17,7 +18,7 @@ const rl = readline.createInterface({
  * @returns {String}
  */
 const stringify = (value) =>
-	(typeof value === "object") ? JSON.stringify(value) : value
+	(typeof value === "object") ? JSON.stringify(value, null, "\t") : value
 
 // Public.
 

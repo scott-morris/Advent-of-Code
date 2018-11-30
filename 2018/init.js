@@ -8,21 +8,20 @@ const path = require("path");
 
 // Dependencies.
 
-const leftPad = require("./helpers/leftPad");
+const leftPad = require("./helpers/left-pad");
 const logger = require("./helpers/logger");
-const readSite = require("./helpers/readSite");
+const readSite = require("./helpers/read-site");
 const render = require("./helpers/render");
 
 // Constants.
 
+const CWD = process.cwd();
 const TEMPLATE_FOLDER = path.resolve(process.cwd(), "/template");
 const TEMPLATE_FILES = [
 	"index.js",
 	"input.txt",
 	"readme.md"
 ];
-const CWD = process.cwd();
-logger.log(`CWD set to "${CWD}"`);
 
 // Process Arguments.
 
@@ -33,7 +32,6 @@ const year = args[1] || "2018";
 
 // Compose the folder path.
 const dayJSpath = `./day${leftPad(day)}`;
-
 const outputFolderPath = path.resolve(CWD, dayJSpath);
 
 // If the folder already exists, stop.
@@ -68,7 +66,7 @@ if (fs.existsSync(outputFolderPath)) {
 
 		// Output to new directory.
 		const outputFilePath = path.join(outputFolderPath, file);
-		logger.log(`Outputting to ${outputFilePath}`);
+		logger.log(`Outputting rendered file to ${outputFilePath}`);
 		fs.writeFileSync(outputFilePath, renderedContent, "utf8");
 	});
 
