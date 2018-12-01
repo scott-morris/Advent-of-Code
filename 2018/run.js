@@ -7,9 +7,9 @@ const colors = require("colors");
 // Dependencies.
 
 const logger = require("./helpers/logger");
-const leftPad = require("./helpers/leftPad");
-const safeRequire = require("./helpers/safeRequire");
-const testCases = require("./helpers/testCases");
+const leftPad = require("./helpers/left-pad");
+const safeRequire = require("./helpers/safe-require");
+const testCases = require("./helpers/test-cases");
 
 // Private.
 
