@@ -24,30 +24,28 @@ const TEMPLATE_FILES = [
 ];
 
 // Process Arguments.
-
 const [ node, file, ...args ] = process.argv;
-
 const day = args[0];
 const year = args[1] || "2018";
 
-// Compose the folder path.
-const dayJSpath = `./day${leftPad(day)}`;
-const outputFolderPath = path.resolve(CWD, dayJSpath);
-
-// If the folder already exists, stop.
-if (fs.existsSync(outputFolderPath)) {
-	logger.warn(`The folder ${outputFolderPath} already exists. Exiting`.red.bold);
-	process.exit(0);
-}
-
-// Check to see if the .creds.js file exists.
-const credsFile = path.join(__dirname, ".creds.js");
-if (!fs.existsSync(credsFile)) {
-	logger.warn(`The .creds.js file does not exist. Exiting`.red.bold);
-	process.exit(0);
-}
-
 (async () => {
+	// Compose the folder path.
+	const dayJSpath = `./day${leftPad(day)}`;
+	const outputFolderPath = path.resolve(CWD, dayJSpath);
+
+	// If the folder already exists, stop.
+	if (fs.existsSync(outputFolderPath)) {
+		logger.warn(`The folder ${outputFolderPath} already exists. Exiting`.red.bold);
+		process.exit(0);
+	}
+
+	// Check to see if the .creds.js file exists.
+	const credsFile = path.join(__dirname, ".creds.js");
+	if (!fs.existsSync(credsFile)) {
+		logger.warn(`The .creds.js file does not exist. Exiting`.red.bold);
+		process.exit(0);
+	}
+
 	// Create the directory.
 	fs.mkdirSync(outputFolderPath);
 
