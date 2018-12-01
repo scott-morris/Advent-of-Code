@@ -16,19 +16,30 @@ const create = (fn, input, output) => {
 };
 
 const run = (testCases) => {
+	const failures = [];
 	testCases.forEach((testCase, index) => {
 		try {
 			testCase();
 		} catch (err) {
-			logger.error(`\n\nTest Case ${index + 1} Failed:`.red.bold);
-			logger.error(err.message.white);
-			logger.error("");
-			process.exit(0);
+			failures.push({
+				caseNumber: index + 1,
+				message: err.message
+			});
 		}
 
 		const percentDone = parseInt(((index+1) / testCases.length) * 100, 10);
 		logger.line([`Testing... `.red.bold, colors.green(`${percentDone}%`)]);
 	});
+
+	if (failures.length) {
+		logger.error(`\n\nTests Failed:`.red.bold);
+		failures.forEach((fail) => {
+			logger.error(`Test #${fail.caseNumber}:`.red, fail.message.white);
+		});
+		logger.error("");
+		process.exit(0);
+	}
+
 	logger.loud("");
 };
 
