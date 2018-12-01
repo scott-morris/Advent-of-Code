@@ -13,16 +13,16 @@ const testCases = require("../helpers/test-cases");
 
 // Private.
 
-const fileInput = getInput(__dirname);
+/* put private functions here */
 
 // Solution #1
 const solution1 = (input) => {
-	// Enter code to solve for part #1 here.
+	/* put code to solve for part #1 here. */
 };
 
 // Solution #2
 const solution2 = (input, answer1) => {
-	// Enter code to solve for part #2 here.
+	/* put code to solve for part #2 here. */
 };
 
 // Public
@@ -34,7 +34,7 @@ const tests = [
 ];
 
 // Run the functions.
-const run = (input = fileInput) => {
+const run = (input = getInput(__dirname)) => {
 	const answer1 = solution1(input);
 	const answer2 = solution2(input, answer1);
 
