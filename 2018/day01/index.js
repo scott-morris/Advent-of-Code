@@ -9,27 +9,8 @@ const testCases = require("../helpers/test-cases");
 
 // Private.
 
-const MAX_LOOPS = 1000;
-
 const updateValue = ({ value, change }) =>
 	value + parseInt(change, 10);
-
-const getDuplicateValues = (obj) => {
-	// Deconstruct the object for analysis.
-	const array = Object.keys(obj).reduce((newArray, key) => {
-		newArray.push(obj[key]);
-		return newArray;
-	}, []);
-
-	// Filter out values that were not duplicates.
-	return array.filter((obj) => (void 0 !== obj.indexSecond));
-};
-
-const newValue = (value, indexFirst) => ({
-	value,
-	indexFirst,
-	indexSecond: void 0
-});
 
 // Solution #1
 const solution1 = (input) =>
@@ -38,40 +19,21 @@ const solution1 = (input) =>
 
 // Solution #2
 const solution2 = (input, answer1) => {
-	const valueTracker = {
-		duplicateFound: false,
-		0: newValue(0, 0)
-	};
-	const numInputs = input.length;
-	let duplicateValues = [];
+	let value = 0;
+	let firstDuplicate;
+	const distinctValues = new Set([value]);
 
-	// Continuously loop over the values until a duplicate is found.
-	for (let value = 0, loops = 0; (0 === duplicateValues.length && MAX_LOOPS >= loops); loops++) {
-		input.forEach((change, index) => {
-			// Calculate looped index
-			let loopIndex = (loops * numInputs) + index + 1;
-
-			// Update value
+	for (;void 0 === firstDuplicate;) {
+		input.forEach((change) => {
 			value = updateValue({ value, change });
-
-			// If this is the first time this value
-			if (!valueTracker.hasOwnProperty(value)) {
-				// Track where this value has been found the first time
-				valueTracker[value] = newValue(value, loopIndex);
-			} else if (void 0 === valueTracker[value].indexSecond) {
-				// Flag that a duplicate has been found
-				valueTracker[value].indexSecond = loopIndex;
-				valueTracker.duplicateFound = true;
+			if (void 0 === firstDuplicate && distinctValues.has(value)) {
+				firstDuplicate = value;
 			}
+			distinctValues.add(value);
 		});
-
-		duplicateValues = getDuplicateValues(valueTracker);
 	}
 
-	// Find the value with the earliest index.
-	duplicateValues.sort((a, b) => a.indexSecond > b.indexSecond);
-
-	return duplicateValues[0].value;
+	return firstDuplicate;
 };
 
 // Public
