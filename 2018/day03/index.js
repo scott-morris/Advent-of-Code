@@ -1,10 +1,6 @@
 // http://adventofcode.com/2018/day/3
 "use strict"
 
-// Libraries.
-
-const assert = require("assert");
-
 // Dependencies.
 
 const getInput = require("../helpers/get-input");
@@ -39,7 +35,8 @@ const addClaim = ({ fabric = [], claimString }) => {
 		fabric[rowIndex] = fabric[rowIndex] || [];
 
 		for (let colIndex = claim.left; colIndex <= claim.right; colIndex++) {
-			fabric[rowIndex][colIndex] = (fabric[rowIndex][colIndex] || 0) + 1;
+			fabric[rowIndex][colIndex] = fabric[rowIndex][colIndex] || [];
+			fabric[rowIndex][colIndex].push(claim.claimId);
 		}
 	}
 
@@ -59,7 +56,7 @@ const solution1 = (input) => {
 	// For each row, filter out undefined and single claims.
 	fabric.forEach((row) => {
 		if (void 0 !== row) {
-			const multiClaims = row.filter((col) => (void 0 !== col && 1 !== col));
+			const multiClaims = row.filter((col) => (void 0 !== col && 1 !== col.length));
 			multiClaimCount += multiClaims.length;
 		}
 	});
