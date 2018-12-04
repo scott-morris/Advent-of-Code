@@ -43,6 +43,20 @@ const addClaim = ({ fabric = [], claimString }) => {
 	return fabric;
 };
 
+const goodClaim = ({ claim, fabric }) => {
+	let isGood = true;
+
+	for (let rowIndex = claim.top; rowIndex <= claim.bottom; rowIndex++) {
+		for (let colIndex = claim.left; colIndex <= claim.right; colIndex++) {
+			if (fabric[rowIndex][colIndex].length > 1) {
+				isGood = false;
+			}
+		}
+	}
+
+	return isGood;
+};
+
 // Solution #1
 const solution1 = (input) => {
 	let fabric = [];
@@ -66,7 +80,19 @@ const solution1 = (input) => {
 
 // Solution #2
 const solution2 = (input, answer1) => {
-	/* put code to solve for part #2 here. */
+	let fabric = [];
+
+	// Pass #1: Add all of the claims.
+	input.forEach((claimString) => {
+		fabric = addClaim({ fabric, claimString });
+	});
+
+	// Pass #2: Check the area of the claim for overlap.
+	const result = input.map(parseClaim).filter((claim) => goodClaim({ claim, fabric }));
+
+	return (1 > result.length) ?
+		"more than one result" :
+		result[0].claimId;
 };
 
 // Public
@@ -86,7 +112,12 @@ const tests = [
 		`#1 @ 1,3: 4x4`,
 		`#2 @ 3,1: 4x4`,
 		`#3 @ 5,5: 2x2`
-	], 4)
+	], 4),
+	testCases.create(solution2, [
+		`#1 @ 1,3: 4x4`,
+		`#2 @ 3,1: 4x4`,
+		`#3 @ 5,5: 2x2`
+	], 3)
 ];
 
 // Run the functions.
