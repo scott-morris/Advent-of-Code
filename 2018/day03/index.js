@@ -23,17 +23,48 @@ const parseClaim = (claim) => {
 	return {
 		claimId,
 		left,
-		right: (left + width),
+		right: (left + width - 1),
 		top,
-		bottom: (top + height),
+		bottom: (top + height - 1),
 		width,
 		height
 	};
 };
 
+const addClaim = ({ fabric = [], claimString }) => {
+	const claim = parseClaim(claimString);
+
+	for (let rowIndex = claim.top; rowIndex <= claim.bottom; rowIndex++) {
+		// Make sure that the row is an array
+		fabric[rowIndex] = fabric[rowIndex] || [];
+
+		for (let colIndex = claim.left; colIndex <= claim.right; colIndex++) {
+			fabric[rowIndex][colIndex] = (fabric[rowIndex][colIndex] || 0) + 1;
+		}
+	}
+
+	return fabric;
+};
+
 // Solution #1
 const solution1 = (input) => {
-	/* put code to solve for part #1 here. */
+	let fabric = [];
+	let multiClaimCount = 0;
+
+	// Add all of the claims.
+	input.forEach((claimString) => {
+		fabric = addClaim({ fabric, claimString });
+	});
+
+	// For each row, filter out undefined and single claims.
+	fabric.forEach((row) => {
+		if (void 0 !== row) {
+			const multiClaims = row.filter((col) => (void 0 !== col && 1 !== col));
+			multiClaimCount += multiClaims.length;
+		}
+	});
+
+	return multiClaimCount;
 };
 
 // Solution #2
@@ -48,12 +79,17 @@ const tests = [
 	testCases.create(parseClaim, `#123 @ 3,2: 5x4`, {
 		claimId: `123`,
 		left: 3,
-		right: 8,
+		right: 7,
 		top: 2,
-		bottom: 6,
+		bottom: 5,
 		width: 5,
 		height: 4
-	})
+	}),
+	testCases.create(solution1, [
+		`#1 @ 1,3: 4x4`,
+		`#2 @ 3,1: 4x4`,
+		`#3 @ 5,5: 2x2`
+	], 4)
 ];
 
 // Run the functions.
