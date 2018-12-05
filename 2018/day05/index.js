@@ -47,7 +47,21 @@ const solution1 = (input) => {
 
 // Solution #2
 const solution2 = (input, answer1) => {
-	/* put code to solve for part #2 here. */
+	// Keep track of the legnths
+	const tracker = [];
+
+	// For each letter of the alphabet, remove it, then calculate
+	for (let charCode = "a".charCodeAt(0); charCode <= "z".charCodeAt(0); charCode++) {
+		const char = String.fromCharCode(charCode);
+
+		// Give us the polymer without any of this letter
+		const reducedPolymer = input.replace(new RegExp(char, "ig"), ``);
+
+		tracker.push(solution1(reducedPolymer));
+	}
+
+	// Return the lowest value
+	return Math.min.apply(null, tracker);
 };
 
 // Public
@@ -58,7 +72,8 @@ const tests = [
 	testCases.create(processReactions, `abBA`, `aA`),
 	testCases.create(processReactions, `abAB`, `abAB`),
 	testCases.create(processReactions, `aabAAB`, `aabAAB`),
-	testCases.create(solution1, `dabAcCaCBAcCcaDA`, 10)
+	testCases.create(solution1, `dabAcCaCBAcCcaDA`, 10),
+	testCases.create(solution2, `dabAcCaCBAcCcaDA`, 4)
 ];
 
 // Run the functions.
