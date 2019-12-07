@@ -5,6 +5,54 @@
 	"version": "0.2.0",
 	"configurations": [
 		{
+			"name": "Debug Jest Tests",
+			"type": "node",
+			"request": "launch",
+			"cwd": "${workspaceRoot}/2019",
+			"runtimeArgs": [
+				"--inspect-brk",
+				"${workspaceRoot}/2019/node_modules/.bin/jest",
+				"--runInBand"
+			],
+			"console": "integratedTerminal",
+			"internalConsoleOptions": "neverOpen",
+			"port": 9229
+		},
+		{
+			"type": "node",
+			"request": "launch",
+			"name": "Jest All",
+			"program": "${workspaceFolder}/2019/node_modules/.bin/jest",
+			"cwd": "${workspaceRoot}/2019",
+			"args": [
+				"--runInBand"
+			],
+			"console": "integratedTerminal",
+			"internalConsoleOptions": "neverOpen",
+			"disableOptimisticBPs": true,
+			"windows": {
+				"program": "${workspaceFolder}/2019/node_modules/jest/bin/jest",
+			}
+		},
+		{
+			"type": "node",
+			"request": "launch",
+			"name": "Jest Current File",
+			"program": "${workspaceFolder}/2019/node_modules/.bin/jest",
+			"cwd": "${workspaceRoot}/2019",
+			"args": [
+				"${fileBasenameNoExtension}",
+				"--config",
+				"jest.config.js"
+			],
+			"console": "integratedTerminal",
+			"internalConsoleOptions": "neverOpen",
+			"disableOptimisticBPs": true,
+			"windows": {
+				"program": "${workspaceFolder}/2019/node_modules/jest/bin/jest",
+			}
+		},
+		{
 			"type": "node",
 			"request": "launch",
 			"name": "Run Active Script (2018)",
